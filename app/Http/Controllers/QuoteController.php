@@ -45,6 +45,7 @@ class QuoteController extends Controller
             'philosopher' => 'required',
             'quote' => 'required',
         ]);
+
         return Quote::create([
             'philosopher' => $request->input('philosopher'),
             'quote' => $request->input('quote'),

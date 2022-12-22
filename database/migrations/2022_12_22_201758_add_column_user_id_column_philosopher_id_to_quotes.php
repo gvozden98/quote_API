@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quotes', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('philosopher');
-            $table->string('quote');
-            $table->timestamps();
+        Schema::table('quotes', function (Blueprint $table) {
+            $table->foreignId('philosopher_id')->constrained('philosophers', 'id');
+            $table->foreignId('user_id')->constrained('users', 'id');
         });
     }
 
@@ -28,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quotes');
+        Schema::table('quotes', function (Blueprint $table) {
+            $table->dropForeign('philosopher_id');
+            $table->dropForeign('user_id');
+        });
     }
 };
