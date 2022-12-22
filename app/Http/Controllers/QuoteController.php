@@ -62,6 +62,12 @@ class QuoteController extends Controller
      */
     public function show($id)
     {
+
+        if ($id > Quote::all()->last()->id || $id < 0) {
+            return response([
+                'message' => 'out of scope'
+            ], 400);
+        }
         return Quote::find($id);
     }
 
