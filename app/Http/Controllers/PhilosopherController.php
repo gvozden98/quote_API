@@ -25,6 +25,14 @@ class PhilosopherController extends Controller
      */
     public function store(Request $request)
     {
+        if (Philosopher::where('philosopher', 'like', '%' . $request->input('philosopher') . '%')->exists()) {
+            return response([
+                'message' => 'Philosopher is already in the database'
+            ], 400);
+        }
+        $request->validate([
+            'philosopher' => 'required',
+        ]);
         return Philosopher::create($request->all());
     }
 

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('philosophers', function (Blueprint $table) {
             $table->id('id');
             $table->string('philosopher');
-            $table->integer('born')->nullable();
-            $table->integer('died')->nullable();
+            $table->string('born')->nullable();
+            $table->string('died')->nullable();
             $table->timestamps();
         });
     }

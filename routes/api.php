@@ -26,18 +26,19 @@ Route::get('/quotes/search/{term}', [QuoteController::class, 'search']);
 /* Auth routes */
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/quotes', [QuoteController::class, 'store']);
-    Route::put('/quotes/{id}', [QuoteController::class, 'update']);
-    Route::delete('/quotes/{id}', [QuoteController::class, 'destroy']);
+    Route::put('/quotes/{id}', [QuoteController::class, 'update']); //Don't know how to implement this route with parameters
+    Route::delete('/quotes/{id}', [QuoteController::class, 'destroy']); //
+    Route::post('/philosophers', [PhilosopherController::class, 'store']); //create philos
     Route::post('/logout', [UserController::class, 'logout']);
 });
 
 // Work with PHILOSOPHERS
 Route::get('/philosophers', [PhilosopherController::class, 'index']);
-Route::post('/philosophers', [PhilosopherController::class, 'store']);
 
 
 // Work with user
 Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

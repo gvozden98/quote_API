@@ -11,7 +11,5 @@ class Quote extends Model
     protected $fillable = [
         'philosopher',
         'quote',
-        'philosopher_id',
-        'user_id'
     ];
 }
